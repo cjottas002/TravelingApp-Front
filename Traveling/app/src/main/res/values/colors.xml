@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#6200EE</color>
+    <color name="primaryDarkColor">#3700B3</color>
+    <color name="accentColor">#009989</color>
+    <color name="primaryTextColor">#212121</color>
+    <color name="secondaryTextColor">#757575</color>
+    <color name="backgroundColor">#FFFFFF</color>
+    <color name="cardBackgroundColor">#F5F5F5</color>
+    <color name="errorColor">#B00020</color>
+    <color name="placeholderColor">#E0E0E0</color>
+    <color name="black">#FF000000</color>
+    <color name="gray">#9C9C9C</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="color_camera">#DCEFFF</color>
+    <color name="color_camera_pressed">#A8C9FF</color>
+    <color name="color_heart">#F0E4FF</color>
+    <color name="color_heart_pressed">#C5AEE0</color>
+    <color name="color_tent">#FFE8EB</color>
+    <color name="color_tent_pressed">#D8B7BA</color>
+    <color name="color_smile">#FFF8D8</color>
+    <color name="color_smile_pressed">#DCCCA7</color>
+    <color name="light_gray">#D3D3D3</color>
+    <color name="dark_gray">#212121</color>
+    <color name="buttonColor">#FFBD00</color>
+    <color name="buttonColor_pressed">#D99A00</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="greenlight">#C5FFF7</color>
+    <color name="toolbar_color">#08AB99</color>
+    <color name="text_input_background">#CBEFE6</color>
+    <color name="boxStrokeColor">#000000</color>
+    <color name="boxBackgroundColor">#CBEFE6</color>
+    <color name="lila_suave">#C8A2C8</color>
+    <color name="lila_oscuro">#8A2BE2</color>
+    <color name="lila_claro">#E6E6FA</color>
+    <color name="crema">#FFE3D2</color>
+</resources>

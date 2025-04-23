@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/greenlight"
+    tools:context=".ui.register.RegisterFragment">
+
+    <FrameLayout
+        android:id="@+id/fl_profileImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/register_ic_profile"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/cameraIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:src="@drawable/register_ic_cam"
+            tools:ignore="ContentDescription" />
+
+    </FrameLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ily_name"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        app:boxBackgroundColor="@color/boxBackgroundColor"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/boxStrokeColor"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fl_profileImage"
+        app:startIconDrawable="@drawable/login_ic_person">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/text_input_background"
+            android:hint="@string/whats_your_name" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ily_lastName"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        app:boxBackgroundColor="@color/boxBackgroundColor"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/boxStrokeColor"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ily_name"
+        app:startIconDrawable="@drawable/login_ic_person">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_lastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/text_input_background"
+            android:hint="@string/whats_your_lastname" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ily_age"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        app:boxBackgroundColor="@color/boxBackgroundColor"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/boxStrokeColor"
+        app:endIconMode="dropdown_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ily_lastName">
+
+        <AutoCompleteTextView
+            android:id="@+id/ac_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/age"
+            android:inputType="none"
+            android:minHeight="48dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <FrameLayout
+        android:id="@+id/ly_register"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ily_age">
+
+        <ImageButton
+            android:id="@+id/b_register"
+            style="@style/YellowButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/register_button"
+            android:enabled="false"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/sign_me_up"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_terms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/privacy_policy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ly_register" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

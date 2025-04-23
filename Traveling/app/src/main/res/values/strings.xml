@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Traveling</string>
+    <string name="your_travel_app">Tu aplicación de viajes</string>
+    <string name="main_text">
+        Hola, estamos buscando a millones de usuarios con inquietudes y ganas de viajar.
+        Si eres tú, no lo dudes: accede a nuestra app y descubrirás miles de destinos
+        y facilidades para alquilar coches, consultar el tiempo…
+    </string>
+    <string name="next">Siguiente</string>
+    <string name="beach_vacation">Vacaciones en la playa</string>
+    <string name="upcoming_meetups">Próximos encuentros</string>
+    <string name="title_activity_login">Actividad de inicio de sesión</string>
+    <string name="prompt_email">Correo electrónico</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Iniciar sesión o registrarse</string>
+    <string name="action_sign_in_short">Iniciar sesión</string>
+    <string name="welcome">¡Bienvenido!</string>
+    <string name="invalid_username">Nombre de usuario no válido</string>
+    <string name="invalid_password">La contraseña debe tener más de 5 caracteres</string>
+    <string name="login_failed">Error de inicio de sesión</string>
+    <string name="forgot_password">¿Olvidaste la contraseña? <b>Obtener nueva</b></string>
+    <string name="create_account_text">¿Tienes una cuenta? <b>Crear nueva</b></string>
+    <string name="privacy_policy">Política de Privacidad <b>Ver Condiciones</b></string>
+    <string name="username">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Log in</string>
+    <string name="eurodisney">Eurodisney</string>
+    <string name="rent_a_car">Alquilar un coche</string>
+    <string name="usa_los_angeles">EE. UU., Los Ángeles – 2 semanas</string>
+    <string name="city_of_los_angeles">Ciudad de Los Ángeles</string>
+    <string name="maldives_3_weeks">Maldivas – 3 semanas</string>
+    <string name="age">¿Cuántos años tienes?</string>
+    <string name="register_button">Registrarse</string>
+    <string name="sign_me_up">Me apunto</string>
+    <string name="whats_your_lastname">¿Y tu apellido?</string>
+    <string name="whats_your_name">¿Cómo te llamas?</string>
+    <string name="find_your_match">¡Encuentra tu pareja perfecta!</string>
+    <string name="onboarding2_main_text">Hemos ayudado a millones en todo el país a encontrar su pareja perfecta… ¡y tú serás el siguiente!</string>
+    <string name="skip">Omitir</string>
+    <string name="find_the_perfect_roommate">¡Encuentra al roommate perfecto!</string>
+    <string name="onboarding3_main_text">Hemos ayudado a millones en todo el país a encontrar su pareja perfecta… ¡y tú serás el siguiente!</string>
+</resources>

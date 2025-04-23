@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/crema"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.onboarding.fragments.Onboarding2Fragment">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="@string/find_your_match"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:ignore="RtlHardcoded" />
+
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity=""
+        android:paddingHorizontal="0dp"
+        android:text="@string/onboarding2_main_text"
+        android:textColor="#666666"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"/>
+
+    <ImageView
+        android:id="@+id/ivOnboardingImage"
+        android:layout_width="380dp"
+        android:layout_height="526dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/onboarding_viewpager_2"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginEnd="5dp">
+
+            <ImageButton
+                android:id="@+id/btnSkip"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/btn_skip_background"
+                android:contentDescription="@string/skip"
+                android:scaleType="centerInside"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/skip"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginStart="5dp">
+
+            <ImageButton
+                android:id="@+id/bNext"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/btn_next_background"
+                android:contentDescription="@string/next"
+                android:scaleType="centerInside"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/next"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"/>
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
