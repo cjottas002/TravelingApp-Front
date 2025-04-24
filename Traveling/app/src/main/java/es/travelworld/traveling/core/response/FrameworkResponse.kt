@@ -1,9 +1,6 @@
 package es.travelworld.traveling.core.response
 
-interface IFrameworkResponse<T> {
-    val data: T?
-    val count: Int
-}
+import es.travelworld.traveling.core.response.interfaces.IFrameworkResponse
 
 data class FrameworkResponse<TResponseDto : ResponseDto>(
     override val data: TResponseDto? = null,

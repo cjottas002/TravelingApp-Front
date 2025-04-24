@@ -1,6 +1,6 @@
 package es.travelworld.traveling.data.mapper
 
-import es.travelworld.traveling.data.local.TransportEntity
+import es.travelworld.traveling.data.local.entities.TransportEntity
 import es.travelworld.traveling.data.remote.Transport
 
 fun TransportEntity.toTransport() : Transport {

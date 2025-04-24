@@ -1,4 +1,4 @@
-package es.travelworld.traveling.data.local
+package es.travelworld.traveling.data.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -31,8 +31,9 @@ class LoginFragment : Fragment() {
     private val loginVM: LoginViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
@@ -62,6 +63,7 @@ class LoginFragment : Fragment() {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun init() {
+
         binding.ibLogin.setOnClickListener {
             loginVM.login(
                 onSuccess = {

@@ -5,13 +5,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import es.travelworld.traveling.core.auth.TokenManager
+import es.travelworld.traveling.core.network.NetworkExecutor
 import es.travelworld.traveling.data.repository.AccountRepository
 import es.travelworld.traveling.data.remote.User
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val repository: AccountRepository, private val tokenManager: TokenManager) : ViewModel() {
+class LoginViewModel @Inject constructor(
+    private val repository: AccountRepository,
+    private val tokenManager: TokenManager,
+    private val networkExecutor: NetworkExecutor
+) : ViewModel() {
 
     val username = MutableLiveData<String>()
     val password = MutableLiveData<String>()
@@ -32,18 +37,38 @@ class LoginViewModel @Inject constructor(private val repository: AccountReposito
             return
         }
 
-        viewModelScope.launch {
-            val response = repository.login(username, pass)
-            if(response.data != null && response.success){
-                val token = response.data.token
-                tokenManager.saveToken(token)
-                onSuccess(token)
-            } else {
-                val msg = response.errors
-                    .joinToString("\n") { it.message }
-                onError(msg)
+
+
+        networkExecutor.executeWithNetworkCheck(
+            // SI HAY INTERNET → llamamos al endpoint remoto
+            onlineAction = {
+                viewModelScope.launch {
+                    val response = repository.login(username, pass)
+                    if (response.success && response.data != null) {
+                        val token = response.data.token
+                        tokenManager.saveToken(token)
+                        onSuccess(token)
+                    } else {
+                        val msg = response.errors.joinToString("\n") { it.message }
+                        onError(msg)
+                    }
+                }
+            },
+            // SI NO HAY INTERNET → usamos login local
+            offlineAction = {
+                viewModelScope.launch {
+                    val response = repository.localLogin(username, pass)
+                    if (response.success && response.data != null) {
+                        val token = response.data.token
+                        tokenManager.saveToken(token)
+                        onSuccess(token)
+                    } else {
+                        val msg = response.errors.joinToString("\n") { it.message }
+                        onError(msg)
+                    }
+                }
             }
-        }
+        )
     }
 
     private fun isValidCredentials(username: String, password: String): Boolean {

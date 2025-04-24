@@ -1,5 +1,6 @@
 package es.travelworld.traveling.core.response
 
-interface IResponseDto
+import es.travelworld.traveling.core.response.interfaces.IResponseDto
+
 
 open class ResponseDto : IResponseDto

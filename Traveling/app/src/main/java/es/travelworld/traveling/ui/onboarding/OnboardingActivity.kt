@@ -9,6 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import es.travelworld.traveling.R
 import es.travelworld.traveling.databinding.ActivityOnboardingBinding
 
+@Suppress("DEPRECATION")
 @AndroidEntryPoint
 class OnboardingActivity : AppCompatActivity() {
 

@@ -37,7 +37,11 @@ class HomeActivity : AppCompatActivity() {
             if (allGranted) {
                 setupUI()
             } else {
-                Toast.makeText(this, "Permisos necesarios no concedidos. Cerrando la aplicación.", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "Permisos necesarios no concedidos. Cerrando la aplicación.",
+                    Toast.LENGTH_LONG
+                ).show()
                 finish()
             }
         }
@@ -112,16 +116,19 @@ class HomeActivity : AppCompatActivity() {
                 openEuroDisneyIntent()
                 true
             }
+
             R.id.menu_rent_car -> {
                 openRentCarFragment()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
 
     private fun openEuroDisneyIntent() {
-        val eurodisneyIntent = Intent(Intent.ACTION_VIEW, "https://www.disneylandparis.com/".toUri())
+        val eurodisneyIntent =
+            Intent(Intent.ACTION_VIEW, "https://www.disneylandparis.com/".toUri())
         startActivity(eurodisneyIntent)
     }
 

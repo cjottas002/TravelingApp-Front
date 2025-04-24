@@ -15,16 +15,16 @@ class RegisterViewModel @Inject constructor(private val repository: AccountRepos
     val name = MutableStateFlow("")
     val lastName = MutableStateFlow("")
     val isAdult = MutableStateFlow(false)
-    val isNombreValid = MutableStateFlow(false)
-    val isApellidosValid = MutableStateFlow(false)
+    val isNameValid = MutableStateFlow(false)
+    val isLastNameValid = MutableStateFlow(false)
     val isRegisterEnabled = MutableStateFlow(false)
 
     fun register(onSuccess: () -> Unit, onError: (String) -> Unit) {
-        if (!isNombreValid.value) {
+        if (!isNameValid.value) {
             onError("El nombre contiene caracteres no permitidos")
             return
         }
-        if (!isApellidosValid.value) {
+        if (!isLastNameValid.value) {
             onError("El apellido contiene caracteres no permitidos")
             return
         }
@@ -56,8 +56,8 @@ class RegisterViewModel @Inject constructor(private val repository: AccountRepos
     fun onNameOrLastNameChanged(nameInput: String, lastNameInput: String) {
         name.value = nameInput
         lastName.value = lastNameInput
-        isNombreValid.value = isValidNameOrLastName(nameInput)
-        isApellidosValid.value = isValidNameOrLastName(lastNameInput)
+        isNameValid.value = isValidNameOrLastName(nameInput)
+        isLastNameValid.value = isValidNameOrLastName(lastNameInput)
         validateAndEnableRegisterButton()
     }
 
@@ -72,7 +72,7 @@ class RegisterViewModel @Inject constructor(private val repository: AccountRepos
 
     private fun validateAndEnableRegisterButton() {
         isRegisterEnabled.value =
-            isNombreValid.value && isApellidosValid.value &&
+            isNameValid.value && isLastNameValid.value &&
                     name.value.isNotEmpty() && lastName.value.isNotEmpty() && isAdult.value
     }
 }

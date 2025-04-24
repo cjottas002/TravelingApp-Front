@@ -31,7 +31,11 @@ class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
     private val viewModel: RegisterViewModel by viewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -42,22 +46,25 @@ class RegisterFragment : Fragment() {
         observeViewModel()
     }
 
-    private val requestCameraPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-        if (isGranted) {
-            openCamera()
-        } else {
-            Toast.makeText(context, "Camera permission denied", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private val captureImage = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK && result.data != null) {
-            val imageBitmap = result.data?.getParcelableExtra<Bitmap>("data")
-            imageBitmap?.let {
-                binding.profileImage.setImageBitmap(it)
+    private val requestCameraPermission =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                openCamera()
+            } else {
+                Toast.makeText(context, "Camera permission denied", Toast.LENGTH_SHORT).show()
             }
         }
-    }
+
+    private val captureImage =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
+                @Suppress("DEPRECATION")
+                val imageBitmap = result.data?.getParcelableExtra<Bitmap>("data")
+                imageBitmap?.let {
+                    binding.profileImage.setImageBitmap(it)
+                }
+            }
+        }
 
     private fun init() {
         setupTextWatchers()
@@ -87,7 +94,8 @@ class RegisterFragment : Fragment() {
 
     private fun setupAgeAutoCompleteTextView() {
         val ageRanges = arrayOf("0-5", "6-11", "12-17", "18-99")
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, ageRanges)
+        val adapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, ageRanges)
         binding.acAge.setAdapter(adapter)
 
         binding.acAge.setOnItemClickListener { _, _, position, _ ->
@@ -100,13 +108,13 @@ class RegisterFragment : Fragment() {
     private fun setupFocusErrorHandlers() {
         binding.etName.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus && binding.etName.text?.isNotEmpty() == true) {
-                binding.etName.error = if (viewModel.isNombreValid.value)
+                binding.etName.error = if (viewModel.isNameValid.value)
                     null else "Por favor, introduce un nombre válido"
             }
         }
         binding.etLastName.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus && binding.etLastName.text?.isNotEmpty() == true) {
-                binding.etLastName.error = if (viewModel.isApellidosValid.value)
+                binding.etLastName.error = if (viewModel.isLastNameValid.value)
                     null else "Por favor, introduce unos apellidos válidos"
             }
         }
@@ -121,11 +129,11 @@ class RegisterFragment : Fragment() {
 
         binding.bRegister.setOnClickListener {
             var valid = true
-            if (!viewModel.isNombreValid.value) {
+            if (!viewModel.isNameValid.value) {
                 binding.etName.error = "Nombre inválido"
                 valid = false
             }
-            if (!viewModel.isApellidosValid.value) {
+            if (!viewModel.isLastNameValid.value) {
                 binding.etLastName.error = "Apellidos inválidos"
                 valid = false
             }

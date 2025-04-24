@@ -13,6 +13,7 @@ android {
     defaultConfig {
         applicationId = "es.travelworld.traveling"
         minSdk = 29
+        //noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -22,6 +23,7 @@ android {
 
     buildTypes {
         release {
+
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -39,6 +41,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        //noinspection DataBindingWithoutKapt
         dataBinding = true
     }
 }
@@ -54,6 +57,7 @@ dependencies {
 
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    //noinspection KaptUsageInsteadOfKsp
     kapt(libs.androidx.room.compiler)
 
     implementation(libs.androidx.core.ktx)
