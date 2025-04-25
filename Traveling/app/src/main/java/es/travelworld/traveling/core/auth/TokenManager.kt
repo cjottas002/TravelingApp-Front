@@ -6,10 +6,11 @@ import androidx.security.crypto.MasterKeys
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
+import androidx.core.content.edit
 
 @Singleton
 class TokenManager @Inject constructor(
-    @ApplicationContext private val ctx: Context
+    @ApplicationContext private val ctx: Context,
 ) {
     private val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
     private val prefs = EncryptedSharedPreferences.create(
@@ -25,13 +26,14 @@ class TokenManager @Inject constructor(
     }
 
     fun saveToken(token: String) {
-        prefs.edit().putString(KEY_AUTH_TOKEN, token).apply()
+        prefs.edit { putString(KEY_AUTH_TOKEN, token) }
     }
 
     fun clearToken() {
-        prefs.edit().remove(KEY_AUTH_TOKEN).apply()
+        prefs.edit { remove(KEY_AUTH_TOKEN) }
     }
 
-    fun fetchToken(): String? =
-        prefs.getString(KEY_AUTH_TOKEN, null)
+    fun fetchToken(): String? {
+       return prefs.getString(KEY_AUTH_TOKEN, null)
+    }
 }

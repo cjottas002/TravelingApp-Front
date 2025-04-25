@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import es.travelworld.traveling.databinding.ItemTransportBinding
-import es.travelworld.traveling.data.remote.Transport
+import es.travelworld.traveling.domain.entities.Transport
 
 class TransportAdapter(private val onClick: (Transport) -> Unit) : ListAdapter<Transport, TransportAdapter.TransportViewHolder>(TransportDiffCallback()) {
 

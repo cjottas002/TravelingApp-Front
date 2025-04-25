@@ -22,7 +22,6 @@ class AndroidNetworkChecker @Inject constructor(@ApplicationContext private val 
             capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
                     && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
         } else {
-            @Suppress("DEPRECATION")
             val info = cm.activeNetworkInfo
             info?.isConnected == true
         }

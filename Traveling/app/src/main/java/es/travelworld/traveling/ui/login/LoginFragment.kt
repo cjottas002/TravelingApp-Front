@@ -71,6 +71,7 @@ class LoginFragment : Fragment() {
                         putExtra("USERNAME", loginVM.username.value)
                         putExtra("PASSWORD", loginVM.password.value)
                     }
+
                     startActivity(intent)
                     requireActivity().finish()
                 },

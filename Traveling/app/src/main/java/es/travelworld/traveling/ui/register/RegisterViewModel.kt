@@ -38,7 +38,7 @@ class RegisterViewModel @Inject constructor(private val repository: AccountRepos
         }
 
         viewModelScope.launch {
-            val response = repository.register(name.value, lastName.value)
+            val response = repository.remoteRegister(name.value, lastName.value)
             if(response.data != null)
 
             if(response.success && response.data.isRegistered) {

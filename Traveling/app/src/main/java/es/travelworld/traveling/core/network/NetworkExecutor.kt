@@ -7,10 +7,8 @@ import javax.inject.Singleton
 @Singleton
 class NetworkExecutor @Inject constructor(private val networkChecker: INetworkChecker) {
 
-    fun executeWithNetworkCheck(
-        onlineAction: () -> Unit,
-        offlineAction: () -> Unit
-    ) {
+    fun executeWithNetworkCheck(onlineAction: () -> Unit, offlineAction: () -> Unit) {
+
         if (networkChecker.isInternetAvailable())
             onlineAction()
         else

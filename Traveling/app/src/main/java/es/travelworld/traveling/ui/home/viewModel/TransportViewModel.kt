@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import es.travelworld.traveling.R
 import es.travelworld.traveling.data.mapper.toTransport
-import es.travelworld.traveling.data.remote.Transport
+import es.travelworld.traveling.domain.entities.Transport
 import es.travelworld.traveling.data.repository.TransportRepository
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -21,8 +21,7 @@ class TransportViewModel @Inject constructor(private val transportRepository: Tr
 
     init {
         viewModelScope.launch {
-            transportRepository
-                .getTransports()
+            transportRepository.getTransports()
                 .map { entities ->
                     entities.map { it.toTransport() }
                 }

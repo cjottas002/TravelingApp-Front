@@ -6,17 +6,19 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import es.travelworld.traveling.core.auth.TokenManager
 import es.travelworld.traveling.core.network.NetworkExecutor
+import es.travelworld.traveling.core.request.user.UserRequest
 import es.travelworld.traveling.data.repository.AccountRepository
-import es.travelworld.traveling.data.remote.User
+import es.travelworld.traveling.data.repository.UserRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val repository: AccountRepository,
+    private val accountRepository: AccountRepository,
+    private val userRepository: UserRepository,
     private val tokenManager: TokenManager,
-    private val networkExecutor: NetworkExecutor
-) : ViewModel() {
+    private val networkExecutor: NetworkExecutor,
+    ) : ViewModel() {
 
     val username = MutableLiveData<String>()
     val password = MutableLiveData<String>()
@@ -37,38 +39,57 @@ class LoginViewModel @Inject constructor(
             return
         }
 
-
-
         networkExecutor.executeWithNetworkCheck(
-            // SI HAY INTERNET → llamamos al endpoint remoto
             onlineAction = {
-                viewModelScope.launch {
-                    val response = repository.login(username, pass)
-                    if (response.success && response.data != null) {
-                        val token = response.data.token
-                        tokenManager.saveToken(token)
-                        onSuccess(token)
-                    } else {
-                        val msg = response.errors.joinToString("\n") { it.message }
-                        onError(msg)
-                    }
-                }
+                onlineAction(username, pass, onSuccess, onError)
             },
-            // SI NO HAY INTERNET → usamos login local
             offlineAction = {
-                viewModelScope.launch {
-                    val response = repository.localLogin(username, pass)
-                    if (response.success && response.data != null) {
-                        val token = response.data.token
-                        tokenManager.saveToken(token)
-                        onSuccess(token)
-                    } else {
-                        val msg = response.errors.joinToString("\n") { it.message }
-                        onError(msg)
-                    }
-                }
+                offlineAction(username, pass, onSuccess, onError)
             }
         )
+    }
+
+    private  fun onlineAction(username: String, pass: String, onSuccess: (token: String) -> Unit, onError: (String) -> Unit) {
+        viewModelScope.launch {
+            runCatching { accountRepository.remoteLogin(username, pass) }
+                .onFailure {
+                    onError(it.localizedMessage.orEmpty())
+                }
+                .onSuccess { response ->
+                    response
+                        .takeIf{ it.success }
+                        ?.data?.token?.also { token ->
+                            tokenManager.saveToken(token)
+                            syncServerData()
+                            onSuccess(token)
+                        }
+                        ?: onError(response.errors.joinToString("\n") { it.message })
+                }
+        }
+    }
+
+    private suspend fun syncServerData() {
+        tokenManager.fetchToken()?.let { token ->
+            userRepository.getAllUsers(token, UserRequest())
+                .takeIf { it.success }
+                ?.data?.let { users ->
+                    // aquí tratas tu lista de usuarios…
+                }
+        }
+    }
+
+    private fun offlineAction(username: String, pass: String, onSuccess: (token: String) -> Unit, onError: (String) -> Unit) {
+        viewModelScope.launch {
+            val response = accountRepository.localLogin(username, pass)
+            if (response.success && response.data != null) {
+                val token = response.data.token
+                tokenManager.saveToken(token)
+                onSuccess(token)
+            } else {
+                val msg = response.errors.joinToString("\n") { it.message }
+                onError(msg)
+            }
+        }
     }
 
     private fun isValidCredentials(username: String, password: String): Boolean {

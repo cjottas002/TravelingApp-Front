@@ -7,17 +7,16 @@ import es.travelworld.traveling.core.response.login.LoginResponse
 import es.travelworld.traveling.core.response.register.RegisterResponse
 import es.travelworld.traveling.data.local.daos.UserDao
 import es.travelworld.traveling.domain.services.IAccountService
-import es.travelworld.traveling.data.remote.User
 import es.travelworld.traveling.domain.repository.IAccountRepository
 import javax.inject.Inject
 
 class AccountRepository @Inject constructor(private val accountService: IAccountService, private val userDao: UserDao) : IAccountRepository {
 
-    override suspend fun register(username: String, pass: String): FrameworkResponse<RegisterResponse> {
+    override suspend fun remoteRegister(username: String, pass: String): FrameworkResponse<RegisterResponse> {
         return accountService.register(RegisterRequest(username, pass)).body()!!
     }
 
-    override suspend fun login(username: String, pass: String): FrameworkResponse<LoginResponse> {
+    override suspend fun remoteLogin(username: String, pass: String): FrameworkResponse<LoginResponse> {
         return accountService.login(LoginRequest(username, pass)).body()!!
     }
 
